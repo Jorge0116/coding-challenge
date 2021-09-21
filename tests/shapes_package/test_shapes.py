@@ -1,6 +1,7 @@
 from unittest import TestCase
 from shapes_library.shapes_package.shapes_module import Circle
 from shapes_library.shapes_package.shapes_module import Rectangle
+from shapes_library.shapes_package.shapes_module import Triangle
 
 
 class CircleTests(TestCase):
@@ -16,6 +17,11 @@ class CircleTests(TestCase):
         mock_circle = Circle(radius=mock_radius)
         self.assertEqual(mock_circle.area(), expected_area)
 
+    def test_circle_area_raises_ValueError_with_negative_radius(self):
+
+        with self.asertRaises(Exceptions):
+            mock_circle = Circle(radius=-1.0)
+       
 
 class RectangleTests(TestCase):
     """
@@ -30,4 +36,17 @@ class RectangleTests(TestCase):
         mock_rectangle = Rectangle(height=mock_height, width=mock_width)
         self.assertEqual(mock_rectangle.area(), expected_area)
 
+
+class TriangleTests(TestCase):
+    """
+    Contains all the units test for the shape_module.Triangle class
+    """
+    def test_triangle_area_return_correct_result_with_valid_height_and_base(self):
+        """
+        Tests that a triangle object with a hight > 0 and a base > 0 returns the correct area
+        """
+        mock_height, mock_base = 10., 10.
+        expected_area = 50.
+        mock_triangle = Rectangle(height=mock_height, base=mock_base)
+        self.assertEqual(mock_triangle.area(), expected_area)
 
